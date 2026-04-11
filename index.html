@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CopyQ: Academic Integrity Analysis Tool</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-content">
+        <img src="logo.png" class="logo">
+        <div>
+            <h1>CopyQ: Academic Integrity Analysis Tool</h1>
+            <p>Upload a document to analyse writing patterns and identify potential anomalies</p>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="upload-box" id="dropArea">
+        <p><strong>Drag and drop your document here</strong></p>
+        <p>or select a file from your device</p>
+
+        <input type="file" id="fileInput" accept=".docx,.pdf">
+        <button onclick="processFile()">Start Analysis</button>
+    </div>
+
+    <div id="status"></div>
+
+    <div id="result" class="hidden">
+
+        <!-- LEFT -->
+        <div class="left-panel">
+            <h2>Document Content Analysis</h2>
+
+            <div class="legend">
+                <p><span style="color:blue;">Blue</span> indicates standard typing activity</p>
+                <p><span style="color:red;">Red</span> indicates large text blocks that may represent pasted content</p>
+            </div>
+
+            <div id="documentPreview"></div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right-panel">
+            <h2>Document Metadata Summary</h2>
+
+            <p><strong>File Name:</strong> <span id="fileName"></span></p>
+            <p><strong>File Size:</strong> <span id="fileSize"></span></p>
+            <p><strong>Status:</strong> <span id="fileStatus"></span></p>
+
+            <p><strong>Creator:</strong> <span id="creator"></span></p>
+            <p><strong>Created Date:</strong> <span id="created"></span></p>
+            <p><strong>Last Modified:</strong> <span id="modified"></span></p>
+
+            <button onclick="resetApp()">Analyse Another Document</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

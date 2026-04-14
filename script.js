@@ -9,12 +9,7 @@ function processFile() {
         return;
     }
 
-    // ❗ Show processing message
-    document.getElementById("processingMsg").style.display = "block";
-
-    // File validation
     if (!file.name.endsWith(".docx")) {
-        document.getElementById("processingMsg").style.display = "none";
         status.innerHTML = "Unsupported file type. Please upload a .docx file.";
         return;
     }
@@ -30,17 +25,14 @@ function processFile() {
             const coreFile = zip.file("docProps/core.xml");
 
             if (!docFile) {
-                document.getElementById("processingMsg").style.display = "none";
                 status.innerHTML = "Invalid document structure.";
                 return;
             }
 
             docFile.async("string").then(function (xmlText) {
 
-                // Simple text extraction
                 let text = xmlText.replace(/<[^>]+>/g, " ");
 
-                // Split text into chunks (simulate RSID analysis)
                 let words = text.split(/\s+/);
                 let resultHTML = "";
 
@@ -54,7 +46,6 @@ function processFile() {
 
                 document.getElementById("documentPreview").innerHTML = resultHTML;
 
-                // Metadata
                 document.getElementById("fileName").innerText = file.name;
                 document.getElementById("fileSize").innerText = (file.size / 1024).toFixed(2) + " KB";
                 document.getElementById("fileStatus").innerText = "Processed";
@@ -74,18 +65,13 @@ function processFile() {
                     });
                 }
 
-                // Show result
                 document.getElementById("result").classList.remove("hidden");
-
-                // ❗ Hide processing message
-                document.getElementById("processingMsg").style.display = "none";
 
                 status.innerHTML = "Analysis complete.";
 
             });
 
         }).catch(function () {
-            document.getElementById("processingMsg").style.display = "none";
             status.innerHTML = "Error processing file.";
         });
     };
